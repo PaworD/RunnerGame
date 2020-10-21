@@ -36,6 +36,7 @@
 			_FoamMaxDistance("Foam Maximum Distance", Float) = 1.7
 			_FoamMinDistance("Foam Minimum Distance", Float) = 0.04
 		}
+
 			SubShader
 		{
 			Tags
@@ -54,6 +55,7 @@
 
 			#pragma vertex vert
 			#pragma fragment frag
+
 
 			#include "UnityCG.cginc"
 
@@ -157,8 +159,8 @@
 
 			// Distort the noise UV based off the RG channels (using xy here) of the distortion texture.
 			// Also offset it by time, scaled by the scroll speed.
-			float2 noiseUV = float2((i.noiseUV.x + _Time.y * _SurfaceNoiseScroll.x) + distortSample.x,
-			(i.noiseUV.y + _Time.y * _SurfaceNoiseScroll.y) + distortSample.y);
+			float2 noiseUV = float2((i.noiseUV.x + _Time.y * _SurfaceNoiseScroll.y) + distortSample.x,
+			(i.noiseUV.y + _Time.y * _SurfaceNoiseScroll.x) + distortSample.y);
 			float surfaceNoiseSample = tex2D(_SurfaceNoise, noiseUV).r;
 
 			// Use smoothstep to ensure we get some anti-aliasing in the transition from foam to surface.
