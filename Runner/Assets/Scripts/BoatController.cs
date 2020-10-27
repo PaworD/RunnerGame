@@ -11,6 +11,8 @@ public class BoatController : MonoBehaviour
     public float speed = 5.0f;
     public Vector3 PlayerOffset;
 
+
+
     private bool touch = false;
 
     private Vector2 pointA;
@@ -47,6 +49,8 @@ public class BoatController : MonoBehaviour
 
     private void FixedUpdate()
     {
+       
+
         player.Find("untitled").GetComponent<Rigidbody>().AddForce(0, 0, playerSpeed * Time.deltaTime);
         if (touch)
         {
