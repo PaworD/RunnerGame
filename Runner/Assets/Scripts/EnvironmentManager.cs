@@ -7,8 +7,8 @@ public class EnvironmentManager : MonoBehaviour
 {
 
     public GameObject[] Environments;
-    private float zSpawn = 90;
-    private float envLength = 90;
+    public float zSpawn = 90;
+    public float envLength = 90;
 
     private List<GameObject> active = new List<GameObject>();
 
@@ -33,11 +33,12 @@ public class EnvironmentManager : MonoBehaviour
 
     private void DeletePassedEnvironment()
     {
-        Destroy(active[0]);
-        active.RemoveAt(0);
+        
 
         if(playerPosition.position.z > (active[1].transform.position.z + active[2].transform.position.z) / 3)
         {
+            Destroy(active[0]);
+            active.RemoveAt(0);
             Destroy(active[1]);
             active.RemoveAt(1);
 

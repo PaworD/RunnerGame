@@ -610,7 +610,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
   m_Name: 
@@ -929,6 +929,8 @@ MonoBehaviour:
   Environments:
   - {fileID: 3135604969932390788, guid: a4211856c74aedf40a3c5fd85b0480a5, type: 3}
   - {fileID: 3135604969932390788, guid: a4211856c74aedf40a3c5fd85b0480a5, type: 3}
+  zSpawn: 0
+  envLength: 90
   playerPosition: {fileID: 189953404}
 --- !u!4 &1836397044
 Transform:
