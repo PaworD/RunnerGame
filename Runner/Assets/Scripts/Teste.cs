@@ -21,7 +21,7 @@ public class Teste : MonoBehaviour
         {
             floatForce = -Physics.gravity * (forceFactor - GetComponent<Rigidbody>().velocity.y * waterDensity);
             floatForce += new Vector3(0.0f, -downForce, 0.0f);
-            GetComponent<Rigidbody>().AddForceAtPosition(floatForce, transform.position);
+            GetComponent<Rigidbody>().AddForceAtPosition(floatForce, transform.TransformPoint(GetComponent<Rigidbody>().centerOfMass));
         }
     }
 }

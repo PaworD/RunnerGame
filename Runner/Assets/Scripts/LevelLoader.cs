@@ -2,20 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
 public class LevelLoader : MonoBehaviour
 {
 
     public Animator anim;
     public float time = 1;
-
-    void Update()
-    {
-        if(Input.GetMouseButtonDown(1))
-        {
+    public Button startGame;
+   
+    void Start(){
+        startGame.onClick.AddListener(delegate() {
             LoadNextLevel();
-        }
-
+        });
     }
+
     public void LoadNextLevel()
     {
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));

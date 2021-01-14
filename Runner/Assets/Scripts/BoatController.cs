@@ -6,44 +6,36 @@ public class BoatController : MonoBehaviour
 {
 
     public Transform player;
-
     public float playerSpeed = 10f;
     public float speed = 5.0f;
     public Vector3 PlayerOffset;
+    public HealthBar HealthBar;
 
 
-
-    private bool touch = false;
-
-    private Vector2 pointA;
-    private Vector2 pointB;
-
-    Animator animator;
-
+    public int maxHealth = 3;
+    
+    
+    private int currentHealth;
+    
     // Start is called before the first frame update
     void Start()
     {
-        animator = player.Find("untitled").GetComponent<Animator>();
+        currentHealth = maxHealth;
+        HealthBar.setMaxHealth(maxHealth);
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            TakeDamage(1);
+        }
         transform.position = player.Find("untitled").position + PlayerOffset;
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            pointA = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.z, Camera.main.transform.position.z));
-        }
-        if (Input.GetMouseButton(0))
-        {
-            touch = true;
-            pointB = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.z, Camera.main.transform.position.z));
-        } else
-        {
-            touch = false;
-        }
+        
+
         
     }
 
@@ -52,25 +44,21 @@ public class BoatController : MonoBehaviour
        
 
         player.Find("untitled").GetComponent<Rigidbody>().AddForce(0, 0, playerSpeed * Time.deltaTime);
-        if (touch)
-        {
-            Vector2 offset = pointB - pointA;
-            Vector2 direction = Vector2.ClampMagnitude(offset, 1.0f);
 
-            moveBoat(direction);
+        if (Input.GetMouseButton(0) && Input.mousePosition.x <= Screen.width / 2){
+            player.Find("untitled").GetComponent<Rigidbody>().AddForce(-1.1f, 0, 0);
+            
+        } else if (Input.GetMouseButton(0) && Input.mousePosition.x > Screen.width / 2) {
+            player.Find("untitled").GetComponent<Rigidbody>().AddForce(1.1f, 0, 0);
         }
+     
     }
 
-    void moveBoat(Vector2 direction)
-    {
+   
 
-        if (Input.GetMouseButton(0) && direction.x < 0)
-        {
-            animator.SetTrigger("turnLeft");
-        } else if (Input.GetMouseButton(0) && direction.x < 0)
-        {
-            animator.SetTrigger("turnLeft");
-        }
-        player.Translate(direction * speed * Time.deltaTime);
+    void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        HealthBar.setHealth(currentHealth);
     }
 }
